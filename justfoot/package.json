@@ -1,0 +1,32 @@
+{
+  "name": "justfoot",
+  "description": "JustFoot - players notation app",
+  "private": true,
+  "version": "0.0.1",
+  "author": "Aurélien Leygues",
+  "license": "MIT",
+  "dependencies": {
+    "@keystonejs/adapter-mongoose": "^8.0.0",
+    "@keystonejs/app-admin-ui": "^7.0.0",
+    "@keystonejs/app-graphql": "^5.0.0",
+    "@keystonejs/auth-password": "^5.0.0",
+    "@keystonejs/fields": "^13.0.0",
+    "@keystonejs/fields-authed-relationship": "^1.0.3",
+    "@keystonejs/fields-datetime-utc": "^6.0.0",
+    "@keystonejs/file-adapters": "^7.0.0",
+    "@keystonejs/keystone": "^11.0.0",
+    "cron": "^1.8.2",
+    "moment": "^2.24.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  },
+  "devDependencies": {
+    "tsc-watch": "4.2.3",
+    "typescript": "3.8.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "serve": "rm -r ./dist/* ; tsc-watch --onSuccess \"node --${NODE_INSPECT:-inspect}=0.0.0.0:9222 --nolazy ./dist/index.js\"",
+    "launch": "cd dist && node index.js"
+  }
+}

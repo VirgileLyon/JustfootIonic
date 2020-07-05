@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "allowJs": true,
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "es5",
+            "es2015",
+            "dom",
+            "scripthost"
+        ],
+        "outDir": "./dist"
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ],
+    "include": [
+        "src/**/*"
+    ]
+}

@@ -1,0 +1,41 @@
+version: "3.7"
+
+networks:
+  todo-network:
+
+volumes:
+  todo-mongodb-volume:
+  todo-storage-volume:
+
+services:
+  mongodb:
+    image: bitnami/mongodb:latest
+    volumes:
+      - todo-mongodb-volume:/bitnami
+    ports:
+      - "${MONGO_PORT}:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGODB_DATABASE}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - MONGODB_ROOT_USERNAME=${MONGODB_ROOT_USERNAME}
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+    networks:
+      - todo-network
+  backend:
+    build:
+      context: .
+      target: main
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb/${MONGODB_DATABASE}"
+      STORAGE_PATH: /storage
+      DISABLE_AUTH: ${DISABLE_AUTH}
+    links:
+      - mongodb
+    networks:
+      - project-network
+    volumes:
+      - todo-storage-volume:/storage
